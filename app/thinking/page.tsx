@@ -1,159 +1,167 @@
 'use client';
 
+import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import Navigation from '@/components/Navigation';
 import { useInView } from 'react-intersection-observer';
+import Link from 'next/link';
+import Navigation from '@/components/Navigation';
+import { PageHero } from '@/components/PageHero';
+import { Section, SectionBody } from '@/components/layout/Section';
+import { SectionHeader } from '@/components/SectionHeader';
+import { Button } from '@/components/ui/Button';
+import { Lightbulb, Clock, Mail, ArrowUpRight, Tag, X } from 'lucide-react';
+import { siteConfig } from '@/lib/site';
+import { thinkingCatalog, getAllTags } from '@/lib/thinking';
+import Footer from '@/components/Footer';
 
-export default function Thinking() {
-  const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: true });
+const allTags = getAllTags();
 
-  const articles = [
-    {
-      title: 'Why Trust Is Infrastructure',
-      description: 'Trust is not a feature. It\'s the foundation of every financial system that scales.',
-      date: 'Coming Soon',
-      readTime: '8 min read'
-    },
-    {
-      title: 'Treasury Is The Operating System Of Business',
-      description: 'Understanding why treasury operations deserve the same engineering rigor as product development.',
-      date: 'Coming Soon',
-      readTime: '10 min read'
-    },
-    {
-      title: 'Building Systems Instead Of Features',
-      description: 'Why I chose to build a complete operating system instead of point solutions.',
-      date: 'Coming Soon',
-      readTime: '7 min read'
-    },
-    {
-      title: 'The Future Of Operational Finance',
-      description: 'How financial infrastructure will evolve to meet the needs of tomorrow\'s organizations.',
-      date: 'Coming Soon',
-      readTime: '12 min read'
-    },
-    {
-      title: 'Scaling Without Complexity',
-      description: 'The paradox of building systems that get simpler as they get larger.',
-      date: 'Coming Soon',
-      readTime: '9 min read'
-    },
-    {
-      title: 'From Startups To Enterprises',
-      description: 'Lessons from building financial infrastructure across different organizational scales.',
-      date: 'Coming Soon',
-      readTime: '11 min read'
-    }
-  ];
+export default function ThinkingPage() {
+  const { ref, inView } = useInView({ threshold: 0.08, triggerOnce: true });
+  const [activeTag, setActiveTag] = useState<string | null>(null);
+
+  const filtered = useMemo(
+    () =>
+      activeTag
+        ? thinkingCatalog.filter((a) => a.tags.includes(activeTag))
+        : thinkingCatalog,
+    [activeTag],
+  );
 
   return (
-    <div className="min-h-screen bg-[#050505] text-[#fafafa]">
+    <div className="site-shell">
       <Navigation />
-      <main className="pt-32">
-        {/* Hero */}
-        <section className="relative">
-          <div className="section-container">
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="max-w-3xl"
-            >
-              <span className="text-xs tracking-widest text-[#a1a1aa] font-medium uppercase">
-                Thinking
-              </span>
-              <h1 className="text-6xl lg:text-7xl font-bold text-[#fafafa] mt-8 leading-tight mb-8">
-                Founder Thinking
-              </h1>
-              <p className="text-2xl text-[#a1a1aa] leading-relaxed">
-                Ideas on financial infrastructure, systems thinking, and building for scale.
-              </p>
-            </motion.div>
-          </div>
-        </section>
+      <main>
+        <PageHero
+          icon={Lightbulb}
+          label="Thinking"
+          title="Founder thinking"
+          description="Notes on infrastructure, systems design, and building products that scale."
+        />
 
-        {/* Articles Grid */}
-        <section className="relative" ref={ref}>
-          <div className="section-container">
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 gap-6"
-              initial={{ opacity: 0 }}
-              animate={inView ? { opacity: 1 } : {}}
-              transition={{ staggerChildren: 0.1, delay: 0.2 }}
-            >
-              {articles.map((article, i) => (
-                <motion.article
-                  key={i}
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: i * 0.08 }}
-                  className="card-elevated rounded-2xl p-12 group hover:border-[#d4af37] transition-all cursor-pointer h-full flex flex-col"
-                  whileHover={{ y: -8, transition: { duration: 0.3 } }}
+        <Section>
+          <div ref={ref}>
+            {allTags.length > 0 && (
+              <div className="flex flex-wrap items-center gap-2 mb-8">
+                <span className="text-xs font-semibold text-[#a1a1aa] uppercase tracking-wider mr-1">
+                  Filter
+                </span>
+                <button
+                  onClick={() => setActiveTag(null)}
+                  className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full border transition-colors ${
+                    activeTag === null
+                      ? 'bg-[#d4af37] text-[#050505] border-[#d4af37]'
+                      : 'text-[#a1a1aa] border-[rgba(255,255,255,0.1)] hover:text-[#fafafa] hover:border-[#d4af37]/30'
+                  }`}
                 >
-                  {/* Category marker */}
-                  <div className="inline-block mb-8 w-fit">
-                    <span className="text-xs tracking-widest text-[#d4af37] font-bold uppercase px-3 py-2 bg-[rgba(212,175,55,0.1)] rounded-full">
-                      Thinking
-                    </span>
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="text-2xl font-bold text-[#fafafa] mb-6 group-hover:text-[#d4af37] transition-colors leading-snug flex-grow">
-                    {article.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-lg text-[#a1a1aa] leading-relaxed mb-10">
-                    {article.description}
-                  </p>
-
-                  {/* Meta */}
-                  <div className="flex items-center justify-between pt-8 border-t border-[rgba(212,175,55,0.1)] group-hover:border-[rgba(212,175,55,0.3)] transition-colors">
-                    <span className="text-sm text-[#a1a1aa]">{article.date}</span>
-                    <span className="text-sm text-[#a1a1aa]">{article.readTime}</span>
-                  </div>
-
-                  {/* Arrow */}
-                  <motion.div
-                    className="mt-6"
-                    initial={{ x: 0 }}
-                    whileHover={{ x: 6 }}
+                  All
+                </button>
+                {allTags.map((tag) => (
+                  <button
+                    key={tag}
+                    onClick={() => setActiveTag(tag === activeTag ? null : tag)}
+                    className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full border transition-colors ${
+                      activeTag === tag
+                        ? 'bg-[#d4af37] text-[#050505] border-[#d4af37]'
+                        : 'text-[#a1a1aa] border-[rgba(255,255,255,0.1)] hover:text-[#fafafa] hover:border-[#d4af37]/30'
+                    }`}
                   >
-                    <span className="text-[#d4af37] text-2xl">→</span>
-                  </motion.div>
-                </motion.article>
-              ))}
-            </motion.div>
+                    <Tag size={11} aria-hidden />
+                    {tag.replace(/-/g, ' ')}
+                  </button>
+                ))}
+                {activeTag && (
+                  <button
+                    onClick={() => setActiveTag(null)}
+                    className="inline-flex items-center gap-1 text-xs text-[#a1a1aa] hover:text-[#fafafa] transition-colors ml-1"
+                  >
+                    <X size={14} />
+                    Clear
+                  </button>
+                )}
+              </div>
+            )}
+            <SectionBody className="!mt-0">
+              <div className="grid-cards grid-cards--2">
+                {filtered.map((article, i) => (
+                  <motion.article
+                    key={article.slug}
+                    className="card-elevated rounded-lg p-8 lg:p-10 flex flex-col"
+                    initial={{ opacity: 0, y: 14 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: i * 0.04 }}
+                  >
+                    {article.published ? (
+                      <Link
+                        href={`/thinking/${article.slug}`}
+                        className="thinking-card-link group flex flex-col flex-grow"
+                      >
+                        <span className="inline-flex items-center gap-1.5 w-fit text-[0.625rem] font-bold uppercase tracking-wider text-[#34d399] px-2.5 py-1 rounded-full bg-[rgba(52,211,153,0.08)] border border-[#34d399]/20 mb-4">
+                          Published
+                        </span>
+                        <h2 className="text-lg font-bold text-[#fafafa] mb-2 leading-snug group-hover:text-[#d4af37] transition-colors">
+                          {article.title}
+                        </h2>
+                        <p className="text-sm text-[#a1a1aa] leading-relaxed flex-grow">
+                          {article.description}
+                        </p>
+                        <p className="text-xs text-[#d4af37] mt-5 pt-4 border-t border-[rgba(255,255,255,0.06)] inline-flex items-center gap-1 font-semibold">
+                          Read essay
+                          <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" aria-hidden />
+                        </p>
+                        <p className="text-xs text-[#a1a1aa]/60 mt-2">{article.readTime} read</p>
+                      </Link>
+                    ) : (
+                      <>
+                        <span className="inline-flex items-center gap-1.5 w-fit text-[0.625rem] font-bold uppercase tracking-wider text-[#d4af37] px-2.5 py-1 rounded-full bg-[rgba(212,175,55,0.08)] border border-[#d4af37]/15 mb-4">
+                          <Clock size={11} aria-hidden />
+                          Soon
+                        </span>
+                        <h2 className="text-lg font-bold text-[#fafafa] mb-2 leading-snug">
+                          {article.title}
+                        </h2>
+                        <p className="text-sm text-[#a1a1aa] leading-relaxed flex-grow">
+                          {article.description}
+                        </p>
+                        <p className="text-xs text-[#a1a1aa]/60 mt-5 pt-4 border-t border-[rgba(255,255,255,0.06)]">
+                          {article.readTime} read
+                        </p>
+                      </>
+                    )}
+                  </motion.article>
+                ))}
+                {filtered.length === 0 && (
+                  <p className="text-sm text-[#a1a1aa] col-span-full text-center py-12">
+                    No articles match this tag.
+                  </p>
+                )}
+              </div>
+            </SectionBody>
           </div>
-        </section>
+        </Section>
 
-        {/* Subscribe CTA */}
-        <section className="relative bg-[#0d0d0d] border-t border-[rgba(255,255,255,0.05)]">
-          <div className="section-container">
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="max-w-2xl mx-auto text-center"
-            >
-              <h2 className="text-4xl font-bold text-[#fafafa] mb-6">
-                More Ideas Coming Soon
-              </h2>
-              <p className="text-xl text-[#a1a1aa] mb-10">
-                Subscribe to stay updated on new thinking around financial infrastructure and systems thinking.
-              </p>
-              <motion.a
-                href="mailto:amos@amosamos.com"
-                className="inline-block px-8 py-4 border border-[#d4af37] text-[#d4af37] font-semibold rounded-lg hover:bg-[rgba(212,175,55,0.1)] transition-colors"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Get Updates
-              </motion.a>
-            </motion.div>
-          </div>
-        </section>
+        <Section variant="surface" className="text-center">
+          <SectionHeader
+            label="Updates"
+            title="More ideas coming soon"
+            description="Reach out to hear when new writing on infrastructure is published."
+            align="center"
+            icon={Mail}
+            className="!mb-8"
+          />
+          <Button
+            href={`mailto:${siteConfig.email}?subject=Thinking%20updates`}
+            variant="secondary"
+            size="lg"
+            icon={Mail}
+            showArrow
+            className="mx-auto"
+          >
+            Get updates
+          </Button>
+        </Section>
       </main>
+      <Footer />
     </div>
   );
 }

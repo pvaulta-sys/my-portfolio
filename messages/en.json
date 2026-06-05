@@ -1,0 +1,120 @@
+{
+  "nav": {
+    "buildingSystems": "Building Systems",
+    "domains": "Domains",
+    "thinking": "Thinking",
+    "journey": "Journey",
+    "projects": "Projects",
+    "resume": "Resume",
+    "contact": "Contact"
+  },
+  "hero": {
+    "roles": "Founder · Software Developer · Financial Analyst · Systems Builder",
+    "title": "Building infrastructure across",
+    "titleFinance": "finance",
+    "titleLogistics": "logistics",
+    "titleSecurity": "security",
+    "leadIntro": "I create systems that help organizations operate with greater",
+    "leadEmphasis": "trust, visibility, security, and control",
+    "primaryCta": "See what I'm building",
+    "secondaryCta": "Get in touch",
+    "scrollLabel": "Scroll to building systems"
+  },
+  "stats": {
+    "domains": "Domains",
+    "domainsDesc": "Finance, logistics, security",
+    "products": "Active products",
+    "productsDesc": "Vaulta, Courier, AEGIS",
+    "years": "Years building",
+    "yearsDesc": "Systems & infrastructure",
+    "entity": "Entity support",
+    "entityDesc": "Organizations of any scale"
+  },
+  "contact": {
+    "label": "Contact",
+    "title": "Build infrastructure together",
+    "desc": "Partnerships across finance, logistics, or security—let's talk systems, products, and scale.",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "Your email",
+    "subjectPlaceholder": "Subject",
+    "messagePlaceholder": "Your message",
+    "send": "Send message",
+    "sending": "Sending...",
+    "successTitle": "Message sent",
+    "successDesc": "Thank you! I'll get back to you within 24 hours.",
+    "errorMsg": "Something went wrong. Please try again or email directly.",
+    "infoTitle": "Contact info",
+    "connectTitle": "Connect"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "thinking": {
+    "label": "Thinking",
+    "title": "Founder thinking",
+    "desc": "Notes on infrastructure, systems design, and building products that scale.",
+    "published": "Published",
+    "soon": "Soon",
+    "readEssay": "Read essay",
+    "filter": "Filter",
+    "all": "All",
+    "clear": "Clear",
+    "noMatch": "No articles match this tag.",
+    "relatedTitle": "Related reading",
+    "updatesTitle": "More ideas coming soon",
+    "updatesDesc": "Reach out to hear when new writing on infrastructure is published.",
+    "getUpdates": "Get updates",
+    "backLink": "Back to Thinking",
+    "essay": "Essay",
+    "share": "Share",
+    "discussion": "Discussion"
+  },
+  "projects": {
+    "label": "Projects",
+    "title": "Infrastructure in production",
+    "desc": "Treasury, logistics, and security products built for operational scale.",
+    "allLink": "All projects",
+    "overview": "Overview",
+    "whyMatters": "Why this matters",
+    "capabilities": "Capabilities",
+    "architecture": "Architecture highlights",
+    "metrics": "Metrics",
+    "technicalApproach": "Technical approach",
+    "techStack": "Tech stack",
+    "nextSteps": "Next steps",
+    "getInvolved": "Get involved"
+  },
+  "resume": {
+    "title": "Experience & skills",
+    "desc": "Background in software engineering, systems architecture, and infrastructure products.",
+    "downloadPdf": "Download PDF",
+    "print": "Print",
+    "experience": "Experience",
+    "education": "Education",
+    "skills": "Skills",
+    "certifications": "Certifications"
+  },
+  "about": {
+    "title": "About",
+    "desc": "Background, principles, and what drives the work."
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "desc": "How your data is collected, used, and protected."
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "desc": "Terms governing the use of this website."
+  },
+  "offline": {
+    "title": "Offline",
+    "desc": "You are offline.",
+    "message": "Some content may not be available without an internet connection. Please reconnect to browse the full site.",
+    "backHome": "Back to home"
+  },
+  "language": {
+    "switchTo": "Switch language"
+  }
+}
