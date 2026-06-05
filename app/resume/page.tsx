@@ -8,7 +8,6 @@ import { Section, SectionBody } from '@/components/layout/Section';
 import { SectionHeader } from '@/components/SectionHeader';
 import { Button } from '@/components/ui/Button';
 import {
-  Briefcase,
   GraduationCap,
   Code2,
   Award,
@@ -20,45 +19,12 @@ import {
 import { siteConfig } from '@/lib/site';
 import Footer from '@/components/Footer';
 
-const experience = [
-  {
-    period: '2023 – Present',
-    title: 'Founder & Systems Architect',
-    company: 'Vaulta Inc.',
-    desc: 'Building treasury infrastructure for multi-currency operations, approval workflows, and financial control. Architecting the platform from ledger design to deployment across cloud infrastructure.',
-  },
-  {
-    period: '2022 – 2024',
-    title: 'Software Engineering Lead',
-    company: 'LogiCore Systems',
-    desc: 'Designed and shipped shipment tracking and delivery operations platform handling thousands of daily transactions. Led API design, database modeling, and real-time operational dashboards.',
-  },
-  {
-    period: '2021 – 2023',
-    title: 'Financial Systems Developer',
-    company: 'Meridian Finance Group',
-    desc: 'Developed treasury management tools and reconciliation engines. Built internal tooling for risk assessment and financial reporting that reduced manual processing by 60%.',
-  },
-  {
-    period: '2020 – 2022',
-    title: 'Security Tooling Engineer',
-    company: 'AEGIS Security Labs',
-    desc: 'Created automation pipelines for vulnerability scanning, incident response orchestration, and compliance monitoring. Designed security audit tooling used across financial institutions.',
-  },
-  {
-    period: '2018 – 2021',
-    title: 'Software Developer',
-    company: 'Nexus Dev Studio',
-    desc: 'Full-stack development across JavaScript, TypeScript, and Python. Built internal platforms for financial data processing, automated reporting, and deployment automation.',
-  },
-];
-
 const education = [
   {
     period: '2018 – 2022',
-    title: 'B.Sc. Computer Science',
-    school: 'University of Lagos',
-    desc: 'Focused on algorithms, data structures, and software engineering. Thesis on distributed systems for financial transaction processing.',
+    title: 'Certified Software Engineer',
+    school: 'National Institute of Information Technology, Port Harcourt',
+    desc: 'Software engineering foundations, algorithms, data structures, and systems design. Practical training in modern development practices and infrastructure thinking.',
   },
   {
     period: '2023',
@@ -133,13 +99,12 @@ const certifications = [
     issuer: 'GARP',
   },
   {
-    title: 'ISC² Certified in Cybersecurity',
-    issuer: 'ISC²',
+    title: 'ISC2 Certified in Cybersecurity',
+    issuer: 'ISC2',
   },
 ];
 
 export default function ResumePage() {
-  const { ref: expRef, inView: expIn } = useInView({ threshold: 0.08, triggerOnce: true });
   const { ref: eduRef, inView: eduIn } = useInView({ threshold: 0.08, triggerOnce: true });
   const { ref: skillRef, inView: skillIn } = useInView({ threshold: 0.08, triggerOnce: true });
   const { ref: certRef, inView: certIn } = useInView({ threshold: 0.08, triggerOnce: true });
@@ -150,44 +115,13 @@ export default function ResumePage() {
       <Navigation />
       <main>
         <PageHero
-          icon={Briefcase}
+          icon={GraduationCap}
           label="Resume"
-          title="Professional Experience & Skills"
-          description="Building infrastructure across finance, logistics, and security—from treasury systems to deployment pipelines."
+          title="Background & Capabilities"
+          description="Education, technical skills, and professional certifications."
         />
 
         <Section>
-          <div ref={expRef}>
-            <SectionHeader
-              label="Career"
-              title="Experience"
-              description="Years of building across domains, from early stage to production."
-              icon={Briefcase}
-            />
-            <SectionBody>
-              <ol className="journey-list">
-                {experience.map((item, i) => (
-                  <motion.li
-                    key={item.title}
-                    className="journey-list__item"
-                    initial={{ opacity: 0, x: -12 }}
-                    animate={expIn ? { opacity: 1, x: 0 } : {}}
-                    transition={{ delay: i * 0.06 }}
-                  >
-                    <span className="journey-list__year">{item.period}</span>
-                    <div className="journey-list__content">
-                      <h3 className="journey-list__title">{item.title}</h3>
-                      <p className="text-[0.8125rem] text-[#d4af37] font-medium mb-1">{item.company}</p>
-                      <p className="journey-list__desc">{item.desc}</p>
-                    </div>
-                  </motion.li>
-                ))}
-              </ol>
-            </SectionBody>
-          </div>
-        </Section>
-
-        <Section variant="surface">
           <div ref={eduRef}>
             <SectionHeader
               label="Learning"
@@ -218,7 +152,7 @@ export default function ResumePage() {
           </div>
         </Section>
 
-        <Section>
+        <Section variant="surface">
           <div ref={skillRef}>
             <SectionHeader
               label="Expertise"
@@ -245,7 +179,7 @@ export default function ResumePage() {
           </div>
         </Section>
 
-        <Section variant="surface">
+        <Section>
           <div ref={certRef}>
             <SectionHeader
               label="Credentials"
@@ -291,8 +225,8 @@ export default function ResumePage() {
                 className="!mb-8"
               />
               <div className="flex flex-wrap gap-3 justify-center">
-                <Button
-                  href={`mailto:${siteConfig.email}?subject=Opportunity%20for%20Ogunleye%20Amos`}
+                  <Button
+                  href={`mailto:${siteConfig.email}?subject=${encodeURIComponent('Regarding your background — Ogunleye Amos Ayodeji')}`}
                   variant="primary"
                   size="lg"
                   icon={Download}

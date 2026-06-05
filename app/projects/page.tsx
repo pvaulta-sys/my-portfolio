@@ -40,9 +40,9 @@ export default function ProjectsPage() {
         <Section>
           <div ref={ref}>
             <SectionHeader
-              label="What I am building"
-              title="Projects"
-              description="Three infrastructure products in active development, each targeting a critical operational domain."
+          label="Products"
+          title="Infrastructure Products"
+          description="Three infrastructure products in active development, each targeting a critical operational domain."
               icon={Layers}
             />
             <SectionBody>

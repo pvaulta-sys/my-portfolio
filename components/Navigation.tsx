@@ -97,7 +97,7 @@ const Navigation = () => {
         {mobileOpen ? (
           <>
             <motion.div
-              className="fixed inset-0 z-[90] bg-black/70 backdrop-blur-sm xl:hidden"
+              className="fixed inset-0 z-[101] bg-black/70 backdrop-blur-sm xl:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -106,7 +106,7 @@ const Navigation = () => {
             />
             <motion.aside
               id="mobile-nav"
-              className="fixed inset-y-0 right-0 z-[95] w-full max-w-sm border-l border-[rgba(255,255,255,0.08)] bg-[#080808] xl:hidden"
+              className="fixed inset-y-0 right-0 z-[102] w-full max-w-sm border-l border-[rgba(255,255,255,0.08)] bg-[#080808] xl:hidden"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}

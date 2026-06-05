@@ -1,15 +1,10 @@
 'use client';
-
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/sections/Hero';
-import StatsCounter from '@/components/sections/StatsCounter';
-import LogoGrid from '@/components/sections/LogoGrid';
-import BuildingSystems from '@/components/sections/BuildingSystems';
-import Domains from '@/components/sections/Domains';
-import OperatingPrinciples from '@/components/sections/OperatingPrinciples';
-import FounderLetter from '@/components/sections/FounderLetter';
+import WhatIBuild from '@/components/sections/WhatIBuild';
 import Journey from '@/components/sections/Journey';
-import Testimonials from '@/components/sections/Testimonials';
+import WhyIBuild from '@/components/sections/WhyIBuild';
+import OperatingPrinciples from '@/components/sections/OperatingPrinciples';
 import Contact from '@/components/sections/Contact';
 
 export default function HomePage() {
@@ -18,14 +13,10 @@ export default function HomePage() {
       <Navigation />
       <main>
         <Hero />
-        <StatsCounter />
-        <BuildingSystems />
-        <Domains />
-        <LogoGrid />
-        <OperatingPrinciples />
-        <FounderLetter />
+        <WhatIBuild />
         <Journey />
-        <Testimonials />
+        <WhyIBuild />
+        <OperatingPrinciples />
         <Contact />
       </main>
     </div>

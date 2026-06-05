@@ -1,133 +1,127 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
-import Link from 'next/link';
-import { ArrowDown, Layers, Mail, Shield, Truck } from 'lucide-react';
+import { ArrowDown, Mail } from 'lucide-react';
+import { siteConfig } from '@/lib/site';
 import { Button } from '@/components/ui/Button';
-import { getHeroSecondaryHref, siteConfig } from '@/lib/site';
-import { useTranslation } from '@/components/LocaleProvider';
 
-const domainIcons = {
-  Finance: Layers,
-  Logistics: Truck,
-  Security: Shield,
-} as const;
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12, delayChildren: 0.15 },
+  },
+};
 
-const Hero = () => {
-  const t = useTranslation();
+const item = {
+  hidden: { opacity: 0, y: 18 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const } },
+};
+
+export default function Hero() {
+  const { hero } = siteConfig;
+
   return (
-    <section id="home" className="hero">
+    <section className="hero" id="hero">
       <div className="hero__bg" aria-hidden />
-
       <div className="page-container hero__inner">
-        <div className="hero__grid">
-          <motion.div
-            className="hero__content"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <p className="hero__roles">
+        <motion.div className="hero__grid" variants={container} initial="hidden" animate="show">
+          <div className="hero__content">
+            <motion.p className="hero__roles" variants={item}>
               {siteConfig.roles.map((role, i) => (
                 <span key={role}>
-                  {i > 0 ? <span className="hero__roles-sep">·</span> : null}
+                  {i > 0 && <span className="hero__roles-sep">/</span>}
                   {role}
                 </span>
               ))}
-            </p>
+            </motion.p>
 
-            <h1 className="hero__title">
+            <motion.h1 className="hero__title" variants={item}>
               Building infrastructure across{' '}
-              <span className="text-gradient-gold">finance</span>,{' '}
-              <span className="text-gradient-gold">logistics</span>, and{' '}
-              <span className="text-gradient-gold">security</span>.
-            </h1>
+              <span className="text-gradient-gold">finance, logistics, and security</span>.
+            </motion.h1>
 
-            <div className="hero__prose">
+            <motion.div className="hero__prose" variants={item}>
               <p className="hero__lead">
-                {t.hero.leadIntro}{' '}
-                <strong className="text-[#fafafa] font-semibold">
-                  {t.hero.leadEmphasis}
-                </strong>
-                .
+                {hero.leadIntro}{' '}
+                <strong className="text-[#fafafa]">{hero.leadEmphasis}</strong>.
               </p>
-              {siteConfig.hero.paragraphs.map((paragraph) => (
-                <p key={paragraph.slice(0, 48)} className="hero__body">
-                  {paragraph}
+              {hero.paragraphs.map((p, i) => (
+                <p key={i} className="hero__body">
+                  {p}
                 </p>
               ))}
-            </div>
+            </motion.div>
 
-            <div className="hero__actions">
-              <Button
-                href={siteConfig.hero.primaryCta.href}
-                variant="primary"
-                size="lg"
-                showArrow
-              >
-                {siteConfig.hero.primaryCta.label}
+            <motion.div className="hero__actions" variants={item}>
+              <Button href={hero.primaryCta.href} variant="primary" size="lg" showArrow>
+                {hero.primaryCta.label}
               </Button>
-              <Button
-                href={getHeroSecondaryHref()}
-                variant="secondary"
-                size="lg"
-                icon={Mail}
-                showArrow
-                external={getHeroSecondaryHref().startsWith('http')}
-              >
-                {siteConfig.hero.secondaryCta.label}
+              <Button href={hero.secondaryCta.href} variant="secondary" size="lg" icon={Mail}>
+                {hero.secondaryCta.label}
               </Button>
-            </div>
+            </motion.div>
 
-            <div className="stat-bar hero__stat-bar" role="list">
-              {siteConfig.hero.domains.map((d) => {
-                const Icon = domainIcons[d.label as keyof typeof domainIcons];
-                return (
-                  <div key={d.label} className="stat-bar__item" role="listitem">
-                    <span className="stat-bar__value">
-                      <Icon size={14} className="text-[#d4af37]" strokeWidth={2} aria-hidden />
-                      {d.label}
-                    </span>
-                    <span className="stat-bar__label">{d.tag}</span>
-                    <p className="stat-bar__desc">{d.description}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </motion.div>
+            <motion.div className="hero__stat-bar" variants={item}>
+              <div className="stat-bar">
+                <div className="stat-bar__item">
+                  <span className="stat-bar__value">Financial</span>
+                  <span className="stat-bar__label">Infrastructure</span>
+                  <span className="stat-bar__desc">
+                    Treasury, ledgers, approvals
+                  </span>
+                </div>
+                <div className="stat-bar__item">
+                  <span className="stat-bar__value">Logistics</span>
+                  <span className="stat-bar__label">Infrastructure</span>
+                  <span className="stat-bar__desc">
+                    Tracking, delivery, visibility
+                  </span>
+                </div>
+                <div className="stat-bar__item">
+                  <span className="stat-bar__value">Security</span>
+                  <span className="stat-bar__label">Infrastructure</span>
+                  <span className="stat-bar__desc">
+                    Tooling, automation, ops
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+          </div>
 
-          <motion.div
-            className="hero__visual"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          >
+          <motion.div className="hero__visual" variants={item}>
             <div className="hero__frame">
-              <Image
-                src="/passport.PNG"
-                alt={siteConfig.fullName}
-                width={480}
-                height={560}
-                priority
-                className="hero__image"
-              />
+              <picture>
+                <img
+                  src="/passport.PNG"
+                  alt="Ogunleye Amos Ayodeji"
+                  className="hero__image"
+                  loading="eager"
+                />
+              </picture>
               <div className="hero__caption">
-                <p className="text-sm font-semibold text-[#fafafa]">{siteConfig.fullName}</p>
-                <p className="text-xs text-[#d4af37] font-medium mt-0.5">Founder · Systems Builder</p>
+                <p className="font-semibold text-sm text-[#fafafa]">
+                  {siteConfig.fullName}
+                </p>
+                <p className="text-xs text-[#a1a1aa] mt-0.5">
+                  Founder · Software Developer · Financial Analyst · Systems Builder
+                </p>
               </div>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
 
-        <div className="hero__scroll">
-          <Link href="/#building-systems" className="hero__scroll-link" aria-label="Scroll to building systems">
-            <ArrowDown size={18} aria-hidden />
-          </Link>
-        </div>
+        <motion.div
+          className="hero__scroll"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2 }}
+        >
+          <a href={hero.primaryCta.href} className="hero__scroll-link" aria-label="Scroll to content">
+            <ArrowDown size={18} />
+          </a>
+        </motion.div>
       </div>
     </section>
   );
-};
-
-export default Hero;
+}

@@ -1,16 +1,16 @@
 import type { LucideIcon } from 'lucide-react';
 import {
   Layers,
-  Grid3x3,
-  Lightbulb,
   Route,
   Mail,
   Link2,
   Code2,
-  Share2,
   FileText,
   Building2,
+  Lightbulb,
+  BookOpen,
 } from 'lucide-react';
+import { XIcon } from '@/components/ui/XIcon';
 import { siteConfig } from '@/lib/site';
 
 export type NavItem = {
@@ -22,40 +22,40 @@ export type NavItem = {
 
 export const navItems: NavItem[] = [
   {
-    label: 'Building Systems',
-    href: '/#building-systems',
+    label: 'What I Build',
+    href: '/#what-i-build',
     icon: Layers,
-    description: 'Infrastructure products in production',
-  },
-  {
-    label: 'Domains',
-    href: '/#domains',
-    icon: Grid3x3,
-    description: 'Finance, logistics, security',
-  },
-  {
-    label: 'Thinking',
-    href: '/thinking',
-    icon: Lightbulb,
-    description: 'Founder notes & essays',
+    description: 'Infrastructure products',
   },
   {
     label: 'Journey',
     href: '/#journey',
     icon: Route,
-    description: 'Background & timeline',
+    description: 'Founder timeline',
   },
   {
-    label: 'Projects',
+    label: 'Why I Build',
+    href: '/#why-i-build',
+    icon: Lightbulb,
+    description: 'Philosophy & principles',
+  },
+  {
+    label: 'Products',
     href: '/projects',
     icon: Building2,
-    description: 'Infrastructure products',
+    description: 'Detailed product pages',
   },
   {
     label: 'Resume',
     href: '/resume',
     icon: FileText,
-    description: 'Experience & skills',
+    description: 'Background & education',
+  },
+  {
+    label: 'About',
+    href: '/about',
+    icon: BookOpen,
+    description: 'Background & approach',
   },
   {
     label: 'Contact',
@@ -69,5 +69,5 @@ export const connectLinks = [
   { label: 'Email', href: `mailto:${siteConfig.email}`, icon: Mail },
   { label: 'LinkedIn', href: siteConfig.social.linkedin, icon: Link2 },
   { label: 'GitHub', href: siteConfig.social.github, icon: Code2 },
-  { label: 'X', href: siteConfig.social.x, icon: Share2 },
+  { label: 'X', href: siteConfig.social.x, icon: XIcon },
 ] as const;

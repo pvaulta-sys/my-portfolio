@@ -8,6 +8,8 @@ import ReadingProgressBar from '@/components/ReadingProgressBar';
 import SocialShare from '@/components/SocialShare';
 import BlogComments from '@/components/BlogComments';
 import { InfrastructureIsTheProduct } from '@/components/thinking/InfrastructureIsTheProduct';
+import { WhyTrustIsInfrastructure } from '@/components/thinking/WhyTrustIsInfrastructure';
+import { BuildingSystemsInsteadOfFeatures } from '@/components/thinking/BuildingSystemsInsteadOfFeatures';
 import { TrustAcrossDomains } from '@/components/thinking/TrustAcrossDomains';
 import { TreasuryAsOperatingSystem } from '@/components/thinking/TreasuryAsOperatingSystem';
 import { getThinkingArticle, getThinkingSlugs, getRelatedArticles } from '@/lib/thinking';
@@ -16,8 +18,10 @@ import Footer from '@/components/Footer';
 
 const bodyComponents: Record<string, ComponentType> = {
   'infrastructure-is-the-product': InfrastructureIsTheProduct,
-  'trust-across-domains': TrustAcrossDomains,
+  'why-trust-is-infrastructure': WhyTrustIsInfrastructure,
+  'building-systems-instead-of-features': BuildingSystemsInsteadOfFeatures,
   'treasury-as-operating-system': TreasuryAsOperatingSystem,
+  'trust-across-domains': TrustAcrossDomains,
 };
 
 type PageProps = {

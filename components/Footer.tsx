@@ -25,7 +25,7 @@ const Footer = () => {
           </div>
           <div>
             <p className="site-footer__label">Navigate</p>
-            <nav className="flex flex-col gap-1" aria-label="Footer">
+            <nav className="flex flex-col gap-0.5 sm:gap-1" aria-label="Footer">
               {navItems.map((link) => {
                 const Icon = link.icon;
                 return (
@@ -41,7 +41,7 @@ const Footer = () => {
           </div>
           <div>
             <p className="site-footer__label">Connect</p>
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-0.5 sm:gap-1">
               {connectLinks.map((link) => {
                 const Icon = link.icon;
                 return (
@@ -64,25 +64,25 @@ const Footer = () => {
         </div>
         <div className="site-footer__bottom">
           <div className="flex flex-wrap gap-x-4 gap-y-1">
-            <Link href="/privacy" className="hover:text-[#d4af37] transition-colors">
+            <Link href="/privacy" className="hover:text-[#d4af37] transition-colors py-1">
               <span className="inline-flex items-center gap-1.5">
                 <Shield size={11} />
                 {t.footer.privacy}
               </span>
             </Link>
-            <Link href="/terms" className="hover:text-[#d4af37] transition-colors">
+            <Link href="/terms" className="hover:text-[#d4af37] transition-colors py-1">
               <span className="inline-flex items-center gap-1.5">
                 <FileText size={11} />
                 {t.footer.terms}
               </span>
             </Link>
           </div>
-          <p>&copy; 2026 {siteConfig.fullName}</p>
-          <div className="flex items-center gap-4">
+          <p className="py-1">&copy; 2026 {siteConfig.fullName}</p>
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
             <p className="text-[#a1a1aa]/70">Building infrastructure &middot; Not websites</p>
             <button
               onClick={scrollToTop}
-              className="flex items-center gap-1.5 text-[#a1a1aa] hover:text-[#d4af37] transition-colors text-[0.75rem]"
+              className="flex items-center gap-1.5 text-[#a1a1aa] hover:text-[#d4af37] transition-colors text-[0.75rem] py-1"
               aria-label="Back to top"
             >
               <ArrowUp size={12} />
